@@ -1,4 +1,4 @@
-// swift-tools-version:5.6
+// swift-tools-version: 5.8
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -18,15 +18,18 @@ let package = Package(
             targets: ["LibCrypto"]),
     ],
     dependencies: [
-        .package(name: "argon2", url: "https://github.com/P-H-C/phc-winner-argon2.git", .branch("master")),
-        .package(name: "Crypto", url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
+        .package(url: "https://github.com/P-H-C/phc-winner-argon2.git", branch: "master"),
+        .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "LibCrypto",
-            dependencies: ["argon2", "Crypto"]),
+            dependencies: [
+                .product(name: "argon2", package: "phc-winner-argon2"),
+                .product(name: "Crypto", package: "swift-crypto")
+            ]),
         .testTarget(
             name: "LibCryptoTests",
             dependencies: ["LibCrypto"]),
