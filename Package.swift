@@ -12,17 +12,17 @@ let package = Package(
             targets: ["LibCrypto"]),
     ],
     dependencies: [
-        .package(name: "argon2", url: "https://github.com/P-H-C/phc-winner-argon2.git", .branch("master"))
+        .package(name: "argon2", url: "https://github.com/P-H-C/phc-winner-argon2.git", .branch("master")),
+        .package(name: "Crypto", url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "LibCrypto",
-            dependencies: ["argon2"]),
+            dependencies: ["argon2", "Crypto"]),
         .testTarget(
             name: "LibCryptoTests",
             dependencies: ["LibCrypto"]),
     ]
 )
-
