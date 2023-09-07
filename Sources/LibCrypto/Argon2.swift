@@ -3,12 +3,12 @@ import argon2
 
 /// Argon2 implementation
 public class Argon2 {
-    var parallelism: Int
-    var memory: Int
-    var iterations: Int
-    var hashLength: Int
-    var type: Argon2Type
-    var version: Argon2Version
+    let parallelism: Int
+    let memory: Int
+    let iterations: Int
+    let hashLength: Int
+    let type: Argon2Type
+    let version: Argon2Version
 
     /// Initializes a new instance
     ///
@@ -87,9 +87,9 @@ public class Argon2 {
         )
 
         // Check if there were any errors
-        if (errorCode != Argon2ErrorCode.ARGON2_OK.rawValue) {
+        if (errorCode != 0) {
             let errorMessage = String(cString: argon2_error_message(errorCode))
-            throw Argon2Exception(message: errorMessage, errorCode: Argon2ErrorCode(rawValue: errorCode) ?? Argon2ErrorCode.ARGON2_UNKNOWN_ERROR)
+            throw Argon2Exception(message: errorMessage, errorCode: errorCode)
         }
 
         // Copy the arrays
@@ -106,9 +106,9 @@ public class Argon2 {
     public static func verifyHashBytes(password: Data, hash: Data, type: Argon2Type = .id) throws -> Bool {
         let encodedString = String(data: hash, encoding: .utf8)?.cString(using: .utf8)
         let result = argon2_verify(encodedString, [UInt8](password), password.count, getArgon2Type(type: type))
-        if result != Argon2ErrorCode.ARGON2_OK.rawValue && result != Argon2ErrorCode.ARGON2_VERIFY_MISMATCH.rawValue {
+        if result != 0 /* OK */ && result != -35 /* Verification mismatch */ {
             let errorMessage = String(cString: argon2_error_message(result))
-            throw Argon2Exception(message: errorMessage, errorCode: Argon2ErrorCode(rawValue: result) ?? Argon2ErrorCode.ARGON2_UNKNOWN_ERROR)
+            throw Argon2Exception(message: errorMessage, errorCode: result)
         }
         // Return if it's verified or not
         return result == 0

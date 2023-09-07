@@ -11,7 +11,7 @@ public class Argon2Result {
     }
 
     public func hexString() -> String {
-        return hashBytes.map{ String(format: "%02hhx", $0) }.joined()
+        return Hex.toHexString(Data(hashBytes))
     }
 
     public func encodedString() -> String {
