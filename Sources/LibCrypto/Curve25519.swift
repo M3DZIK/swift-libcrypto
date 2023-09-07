@@ -1,6 +1,7 @@
 import Foundation
 import enum Crypto.Curve25519
-import Crypto
+import struct Crypto.SymmetricKey
+import struct Crypto.SHA256
 
 public class Curve25519 {
     /// Generates a new Curve25519 key pair

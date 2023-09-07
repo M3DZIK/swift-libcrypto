@@ -1,7 +1,5 @@
 public class HexException: Error {
-    public let message: String
+    public let message = "Invalid hex string"
 
-    init(_ message: String) {
-        self.message = message
-    }
+    init() {}
 }
