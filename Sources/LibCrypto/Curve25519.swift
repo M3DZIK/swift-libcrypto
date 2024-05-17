@@ -49,6 +49,6 @@ public class Curve25519 {
 
         let sharedSecret = try ourPrivate.sharedSecretFromKeyAgreement(with: theirPublic)
 
-        return sharedSecret.x963DerivedSymmetricKey(using: SHA256.self, sharedInfo: Data(), outputByteCount: 32)
+        return SymmetricKey(data: Data(sharedSecret: sharedSecret))
     }
 }
