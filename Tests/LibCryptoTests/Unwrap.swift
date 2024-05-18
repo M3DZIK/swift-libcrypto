@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by aeoliux on 17/05/2024.
-//
-
 import XCTest
 @testable import LibCrypto
 @testable import Crypto

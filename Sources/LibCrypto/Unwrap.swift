@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by aeoliux on 17/05/2024.
-//
-
 import Foundation
 import Crypto
 
