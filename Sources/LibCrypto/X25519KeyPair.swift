@@ -1,8 +1,8 @@
 import Foundation
 
 public class X25519KeyPair {
-    let publicKey: String
-    let privateKey: String
+    public let publicKey: String
+    public let privateKey: String
 
     init(publicKey: String, privateKey: String) {
         self.publicKey = publicKey
