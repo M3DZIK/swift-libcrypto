@@ -1,7 +1,7 @@
 import Foundation
 import Crypto
 
-extension Data {
+public extension Data {
     /// Initializes a new `Data` object with content extracted from SymmetricKey object
     ///
     /// - Parameter symmetricKey: `SymmetricKey` object
