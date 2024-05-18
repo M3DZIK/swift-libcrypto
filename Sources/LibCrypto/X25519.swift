@@ -3,29 +3,29 @@ import enum Crypto.Curve25519
 import struct Crypto.SymmetricKey
 import struct Crypto.SHA256
 
-public class Curve25519 {
-    /// Generates a new Curve25519 key pair
+public class X25519 {
+    /// Generates a new X25519 key pair
     ///
-    /// - Returns: `Curve25519KeyPair` that contains the private and public key
-    public static func generateKeyPair() -> Curve25519KeyPair {
+    /// - Returns: `X25519KeyPair` that contains the private and public key
+    public static func generateKeyPair() -> X25519KeyPair {
         let privateKey = Crypto.Curve25519.KeyAgreement.PrivateKey()
-        return Curve25519KeyPair(
+        return X25519KeyPair(
             publicKey: privateKey.publicKey.rawRepresentation,
             privateKey: privateKey.rawRepresentation
         )
     }
 
-    /// Returns a Curve25519 key pair with the given private key
+    /// Returns a X25519 key pair with the given private key
     ///
     /// - Parameter privateKey: The private key
     ///
     /// - Throws: When the private key is invalid
     ///
-    /// - Returns: `Curve25519KeyPair` that contains the private and public key
-    public static func fromPrivateKey(privateKey: String) throws -> Curve25519KeyPair {
+    /// - Returns: `X25519KeyPair` that contains the private and public key
+    public static func fromPrivateKey(privateKey: String) throws -> X25519KeyPair {
         let privateKeyBytes = try Hex.fromHexString(privateKey)
         let privateKey = try Crypto.Curve25519.KeyAgreement.PrivateKey(rawRepresentation: privateKeyBytes)
-        return Curve25519KeyPair(
+        return X25519KeyPair(
             publicKey: privateKey.publicKey.rawRepresentation,
             privateKey: privateKey.rawRepresentation
         )

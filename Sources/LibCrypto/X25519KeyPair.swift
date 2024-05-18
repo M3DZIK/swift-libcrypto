@@ -1,6 +1,6 @@
 import Foundation
 
-public class Curve25519KeyPair {
+public class X25519KeyPair {
     let publicKey: String
     let privateKey: String
 
