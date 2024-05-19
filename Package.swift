@@ -19,7 +19,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/P-H-C/phc-winner-argon2.git", branch: "master"),
-        .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0" ..< "3.0.0"),
+        .package(url: "https://github.com/apple/swift-crypto.git", .upToNextMajor(from: "3.4.0")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
